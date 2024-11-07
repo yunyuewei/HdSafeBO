@@ -1,4 +1,4 @@
-# High-dimensional Safe Optimization with local optimistic exploration (HdSafeBO)
+# High-dimensional Safe Optimization with Local Optimistic Exploration (HdSafeBO)
 
 This is the code repository of the paper "Safe Bayesian Optimization for the Control of High-Dimensional Embodied Systems".
 
