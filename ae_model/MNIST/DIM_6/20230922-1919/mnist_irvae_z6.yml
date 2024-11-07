@@ -1,0 +1,74 @@
+data:
+  training:
+    batch_size: 100
+    dataset: MNIST
+    digits: all
+    n_workers: 4
+    root: dataset
+    shuffle: true
+    split: training
+  validation:
+    batch_size: 512
+    dataset: MNIST
+    digits: all
+    n_workers: 4
+    root: dataset
+    shuffle: true
+    split: validation
+device: cuda:4
+logdir: results/MNIST/DIM_6/
+logger:
+  endwith:
+  - '@'
+  type: base
+model:
+  arch: irvae
+  decoder:
+    activation:
+    - relu
+    - relu
+    - relu
+    - relu
+    arch: fc_image
+    img_size:
+    - 1
+    - 28
+    - 28
+    l_hidden:
+    - 256
+    - 256
+    - 256
+    - 256
+    out_activation: sigmoid
+    out_chan_num: 1
+    task: mnist
+  encoder:
+    activation:
+    - relu
+    - relu
+    - relu
+    - relu
+    arch: fc_image
+    img_size:
+    - 1
+    - 28
+    - 28
+    l_hidden:
+    - 256
+    - 256
+    - 256
+    - 256
+    out_activation: linear
+    out_chan_num: 1
+  iso_reg: 1000
+  x_dim: 784
+  z_dim: 6
+trainer: base
+training:
+  n_epoch: 300
+  optimizer:
+    lr: 0.0001
+    name: adam
+  print_interval: 512
+  val_interval: 512
+  visualize_interval: 100

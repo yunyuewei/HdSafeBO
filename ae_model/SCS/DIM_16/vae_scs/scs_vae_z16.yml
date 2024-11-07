@@ -1,0 +1,71 @@
+data:
+  training:
+    batch_size: 512
+    dataset: SCS
+    n_workers: 4
+    root: dataset
+    shuffle: true
+    split: training
+  validation:
+    batch_size: 512
+    dataset: SCS
+    n_workers: 4
+    root: dataset
+    shuffle: true
+    split: validation
+device: cuda:0
+logdir: results/SCS2/DIM_16/
+logger:
+  endwith:
+  - '@'
+  type: base
+model:
+  arch: irvae_scs
+  decoder:
+    activation:
+    - relu
+    - relu
+    - relu
+    - relu
+    arch: fc_image
+    img_size:
+    - 1
+    - 52
+    - 14
+    l_hidden:
+    - 256
+    - 256
+    - 256
+    - 256
+    out_activation: sigmoid
+    out_chan_num: 1
+  encoder:
+    activation:
+    - relu
+    - relu
+    - relu
+    - relu
+    arch: fc_image
+    img_size:
+    - 1
+    - 52
+    - 14
+    l_hidden:
+    - 256
+    - 256
+    - 256
+    - 256
+    out_activation: linear
+    out_chan_num: 1
+  iso_reg: 0
+  x_dim: 728
+  z_dim: 16
+trainer: base
+training:
+  n_epoch: 300
+  optimizer:
+    lr: 0.0001
+    name: adam
+  print_interval: 100
+  val_interval: 200
+  visualize_interval: 100
